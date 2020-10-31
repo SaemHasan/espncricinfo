@@ -1,0 +1,59 @@
+{% extends 'homepage/base.html' %}
+      {% load static %}
+      {% block content %}
+
+  <main id="main" class="main-page">
+
+    <!--==========================
+      Speaker Details Section
+    ============================-->
+    <section id="speakers-details" class="wow fadeIn">
+      <div class="container">
+        <div class="section-header">
+          <h2>Series Details</h2>
+{#          <p>jksdfhfsgfklj sdajkhlgfdsba</p>#}
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+              {% with 'homepage/img/speakers/'|add:series.image_link as image_path %}
+            <img src="{% static image_path %}" alt="{{ series.name }}" class="img-fluid">
+              {% endwith %}
+          </div>
+
+          <div class="col-md-6">
+            <div class="details">
+              <h2>{{ series.name }} </h2>
+{#              <div class="social">#}
+{#                <a href=""><i class="fa fa-twitter"></i></a>#}
+{#                <a href=""><i class="fa fa-facebook"></i></a>#}
+{#                <a href=""><i class="fa fa-google-plus"></i></a>#}
+{#                <a href=""><i class="fa fa-linkedin"></i></a>#}
+{#              </div>#}
+              <p>SERIES HOST COUNTRY : {{ series.host }}</p>
+ 
+              <p>MAN OF THE SERIES : {{ series.motm }}</p>
+
+              <p>SERIES WINNER : {{ series.winner }}</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+          <script>
+          document.getElementById('nav-about').hidden=true;
+          document.getElementById('nav-series').hidden=true;
+          document.getElementById('nav-teams').hidden=true;
+          document.getElementById('nav-contact').hidden=true;
+          document.getElementById('nav-grounds').hidden=true;
+          document.getElementById('nav-videos').hidden=true;
+          document.getElementById('nav-images').hidden=true;
+          document.getElementById('nav-stats').hidden=true;
+          </script>
+
+{% endblock %}

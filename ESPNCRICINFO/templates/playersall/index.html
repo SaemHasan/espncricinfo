@@ -7,11 +7,14 @@
 <body>
 <h1><span class="blue">&lt;PLAYERS</span><span class="blue"> TABLE&gt;</span> <span class="yellow"></span></h1>
 {#<h2>Created with love by <a href="http://pablogarciafernandez.com" target="_blank">Pablo García Fernández</a></h2>#}
-
+<br>
+<br>
+<h1> CLICK ON NAME TO SEE PLAYER DETAILS</h1>
+<br>
 <table class="containertable">
 	<thead>
 		<tr>
-{#			<th><h1>ID</h1></th>#}
+			<th><h1>IMAGE</h1></th>
 			<th><h1>FULL NAME</h1></th>
 {#			<th><h1>LAST NAME</h1></th>#}
             <th><h1>DATE OF BIRTH</h1></th>
@@ -22,6 +25,9 @@
     {% for person in persons %}
 		<tr>
 {#			<td>{{ person.id }}</td>#}
+            {% with 'playersingle/images/'|add:person.image_link as image_path %}
+                <td> <img src="{% static image_path %}" height="100" width="200"> </td>
+            {% endwith %}
             <td><a id="{{ person.id }}" onclick="getText(id)">{{ person.full_name }}</a></td>
 {#            <td><a href="{% url 'playersingle' %}">{{ person.last_name }}</a></td>#}
 			<td>{{ person.date_of_birth }}</td>

@@ -19,7 +19,11 @@ def playersall(request):
         full_name = first_name+" "+last_name
         nationality = r[3]
         dob = r[4]
-        row = {'id': id, 'first_name': first_name, 'last_name': last_name,'full_name': full_name, 'nationality': nationality,'date_of_birth': dob}
+        image_link = r[5]
+        if image_link is None:
+            image_link = "default.jpg"
+        row = {'id': id, 'first_name': first_name, 'last_name': last_name,'full_name': full_name,
+               'nationality': nationality,'date_of_birth': dob, 'image_link': image_link}
         dict_result.append(row)
 
     return render(request, 'playersall/index.html', {'persons': dict_result})

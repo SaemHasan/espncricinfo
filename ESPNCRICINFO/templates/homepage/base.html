@@ -109,14 +109,14 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-info">
-            <img src="{% static 'homepage/img/logo3.png' %}" alt="TheEvenet">
+              <a href="{% url 'home' %}"> <img src="{% static 'homepage/img/logo3.png' %}" alt="ESPNCRICINFO"> </a>
             <p>Find Cricket Scores, Match updates, Fixtures, Results, News, Articles, Video highlights only at ESPNcricinfo</p>
           </div>
 
           <div class="col-lg-4 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="{% url 'home' %}">Home</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
               <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
@@ -145,13 +145,13 @@
               <strong>Email:</strong> info@example.com<br>
             </p>
 
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
+{#            <div class="social-links">#}
+{#              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>#}
+{#              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>#}
+{#              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>#}
+{#              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>#}
+{#              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>#}
+{#            </div>#}
 
           </div>
 

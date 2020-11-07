@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
-from loginpage.views import getlogin
+import cx_Oracle
+dsn_tns = cx_Oracle.makedsn('localhost', '1521', service_name='ORCL')
+connection = cx_Oracle.connect(user='cricinfo', password='cricinfo', dsn=dsn_tns)
 # Create your views here.
 
 
 
 def addground(request):
     if request.method == 'GET':
-        if True:
+        if request.session['loginstatus']:
             return render(request, 'addground/index.html')
         else:
             return redirect('login')

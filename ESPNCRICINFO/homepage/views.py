@@ -1,10 +1,15 @@
-from django.shortcuts import render
-import random
-from django.db import connection
+from django.contrib.auth import logout
+from django.shortcuts import render, redirect
+import random, cx_Oracle, json
+
+dsn_tns = cx_Oracle.makedsn('localhost', '1521', service_name='ORCL')
+connection = cx_Oracle.connect(user='cricinfo', password='cricinfo', dsn=dsn_tns)
 
 
 # Create your views here.
 def home(request):
+    request.session['loginstatus'] = False
+    logout(request)
     cursor = connection.cursor()
     sql = "SELECT * FROM TEAM"
     cursor.execute(sql)
@@ -83,19 +88,27 @@ def series_details(request):
 
 
 def teams(request):
-    cursor = connection.cursor()
-    sql = "SELECT * FROM TEAM"
-    cursor.execute(sql)
-    result = cursor.fetchall()
-    cursor.close()
+    all_team = []
+    if request.method=="GET":
+        cursor = connection.cursor()
+        sql = "SELECT * FROM TEAM"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        cursor.close()
 
-    dict_result = []
+        dict_result = []
+        all_team.clear()
+        for r in result:
+            id = r[0]
+            name = r[1]
+            all_team.append(name)
+            image_link = r[2]
+            row = {'id': id, 'name': name, 'image_link': image_link}
+            dict_result.append(row)
 
-    for r in result:
-        id = r[0]
-        name = r[1]
-        image_link = r[2]
-        row = {'id': id, 'name': name, 'image_link': image_link}
-        dict_result.append(row)
+        json_teams = json.dumps(all_team)
 
-    return render(request, 'homepage/teams.html', {'results': dict_result})
+        return render(request, 'homepage/teams.html', {'results': dict_result, 'allteam': json_teams})
+    else:
+        name = request.POST['search2']
+        return redirect('teams')

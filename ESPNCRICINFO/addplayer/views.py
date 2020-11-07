@@ -1,11 +1,17 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+import cx_Oracle
+dsn_tns = cx_Oracle.makedsn('localhost', '1521', service_name='ORCL')
+connection = cx_Oracle.connect(user='cricinfo', password='cricinfo', dsn=dsn_tns)
 # Create your views here.
 
 
 def addplayer(request):
     if request.method == 'GET':
-        return render(request, 'addplayer/index.html')
+        if request.session['loginstatus']:
+            return render(request, 'addplayer/index.html')
+        else:
+            return redirect('login')
+
     else:
         # name = request.POST['name']
         # country = request.POST['country']

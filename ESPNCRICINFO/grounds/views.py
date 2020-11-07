@@ -1,6 +1,8 @@
 from django.shortcuts import render
-import random
-from django.db import connection
+import random, cx_Oracle
+
+dsn_tns = cx_Oracle.makedsn('localhost', '1521', service_name='ORCL')
+connection = cx_Oracle.connect(user='cricinfo', password='cricinfo', dsn=dsn_tns)
 
 
 # Create your views here.

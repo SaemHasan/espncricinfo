@@ -7,7 +7,12 @@
 {#	<head>#}
 {#		<meta charset="utf-8" />#}
 {#		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />#}
+          <head>
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <link rel=”stylesheet” href=”{% static 'adminpage/assets/css/sweetalert.css' %}”>
 		<link rel="stylesheet" href="{% static 'adminpage/assets/css/main.css' %}" />
+          </head>
 {#	</head>#}
 {#	<body class="is-preload">#}
 
@@ -18,8 +23,8 @@
 
 					<!-- Logo -->
 						<div id="logo">
-                            <a href="{% url 'home' %}"> <img src="{% static 'homepage/img/logo3.png' %}" alt="ESPNCRICINFO" height="50" width="150"></a>
-                            <p><a href="{% url 'home' %}">HOME</a> </p>
+                            <a onclick="myFunction()"> <img src="{% static 'homepage/img/logo3.png' %}" alt="ESPNCRICINFO" height="50" width="150"></a>
+                            <p><a onclick="myFunction()">HOME</a> </p>
 {#							<span class="image avatar48"><img src="{% static 'adminpage/images/avatar.jpg' %}" alt="" /></span>#}
 							<h1 id="title">SAEM HASAN</h1>
 							<p>ADMIN</p>
@@ -28,7 +33,7 @@
 				</div>
 
 				<div class="bottom">
-                    <a href="{% url 'home' %}"><button> LOG OUT</button></a>
+                    <a onclick="myFunction()"><button> LOG OUT</button></a>
 					<!-- Social Icons -->
 {#						<ul class="icons">#}
 {#							<li><a href="{% url 'home' %}"> <img src="{% static 'homepage/img/logo3.png' %}" alt="ESPNCRICINFO" height="50" width="150"></a></li>#}
@@ -144,6 +149,63 @@
           document.getElementById('nav-stats').hidden=true;
     </script>
 
+    <script>
+        function myFunction() {
+          var txt;
+          var r = confirm("You will be logged out!");
+          if (r == true) {
+            {#txt = "You pressed OK!";#}
+              window.location.href = "{% url 'home' %}";
+          } else {
+            {#txt = "You pressed Cancel!";#}
+              alert('you will stay in the admin page')
+          }
+        }
+    </script>
+
+<script type="text/javascript">
+
+function JSconfirm(){
+
+        swal({
+
+        title: "Redirect to main page!",
+
+        text: "Redirect me to home page?",
+
+        type: "warning",
+
+        showCancelButton: true,
+
+        confirmButtonColor: "#DD6B55",
+
+        confirmButtonText: "Yes",
+
+        cancelButtonText: "No",
+
+        closeOnConfirm: false,
+
+        closeOnCancel: false },
+
+        function(isConfirm){
+
+        if (isConfirm)
+
+        {
+
+       window.location.href = "{% url 'home' %}";
+
+        }
+
+        else {
+
+        swal("You are not redirect!", "success");
+
+        } });
+
+        }
+
+</script>
 {#	</body>#}
 {#</html>#}
 {% endblock %}

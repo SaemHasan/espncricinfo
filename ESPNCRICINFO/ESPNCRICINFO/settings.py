@@ -25,7 +25,7 @@ SECRET_KEY = 'inbr%!##0t@*ivsyzel0n27(07ir#pn1-mhufmin)@uyobh=j-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'ESPNCRICINFO.urls'
@@ -85,23 +86,23 @@ WSGI_APPLICATION = 'ESPNCRICINFO.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'ORCL', #select * from global_name;
-        'USER': 'cricinfo',
-        'PASSWORD': 'cricinfo',
-        'HOST': 'localhost',
-        'PORT': '1521'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': 'ORCL', #select * from global_name;
+#         'USER': 'cricinfo',
+#         'PASSWORD': 'cricinfo',
+#         'HOST': 'localhost',
+#         'PORT': '1521'
+#     }
+# }
 
 
 # Password validation

@@ -9,6 +9,8 @@ connection = cx_Oracle.connect(user='cricinfo', password='cricinfo', dsn=dsn_tns
 def adminpage(request):
     print(str(request.session['loginstatus']))
     if request.session['loginstatus']:
-        return render(request, 'adminpage/index.html')
+        #name=request.user.first_name
+        name={'first_name':"JOY"}
+        return render(request, 'adminpage/index.html', name)
     else:
         return redirect('login')

@@ -87,7 +87,7 @@ form.example::after {
                   <img src="{% static image_path %}" alt="team logo">
                     {% endwith %}
                 </div>
-                <h4> {{ r.name }}<span>     {{ r.id }}</span></h4>
+                <h4> <a id="{{ r.name }}" onclick="getText(id)">{{ r.name }}</a><span>     {{ r.id }}</span></h4>
 {#                <p>Facere provident incidunt quos voluptas.</p>#}
               </div>
             </div>
@@ -249,7 +249,12 @@ form.example::after {
       </div>
 
     </section>
-
+    <script>
+          function getText(ID) {
+            var txt = document.getElementById(ID).innerText;
+            window.location.href = "{% url 'teamsingle' %}" +"?name="+txt;
+          }
+    </script>
     <script>
           document.getElementById('nav-about').hidden=true;
           document.getElementById('nav-series').hidden=true;

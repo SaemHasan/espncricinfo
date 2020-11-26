@@ -38,4 +38,5 @@ def loginuser(request):
         else:
             request.session['loginstatus'] = True
             # login(request, user)
+            data={'name':user}
             return redirect('adminpage')

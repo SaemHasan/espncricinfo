@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.grounds, name='grounds'),
+    path('groundsingle/', include('groundsingle.urls')),
 ]

@@ -59,6 +59,42 @@
                                     <label for="company" class="required">Nationality</label>
                                     <input type="text" name="company" id="company" />
                                 </div>
+
+                                <div class="form-input">
+                                    <label for="player-role">PLAYER ROLE</label>
+                                    <input list="player-role" name="ROLE" id="ROLE" required/>
+                                    <datalist id="player-role">
+                                        <option>Batsman</option>
+                                        <option>Bowler</option>
+                                        <option>All-rounder</option>
+                                    </datalist>
+                                </div>
+                                <div class="form-input">
+                                    <label for="Batting-Style">Batting Style</label>
+                                    <input list="Batting-Style" name="bat_style" id="bat_style" required/>
+                                    <datalist id="Batting-Style">
+                                        <option>Right Hand Batsman</option>
+                                        <option>Left Hand Batsman</option>
+
+                                    </datalist>
+                                </div>
+
+                                <div class="form-input">
+                                    <label for="Bowling-Style">Bowling Style</label>
+                                    <input list="Bowling-Style" name="bowl_style" id="bowl_style" required/>
+                                    <datalist id="Bowling-Style">
+                                        <option>Right-arm offbreak</option>
+                                        <option>Left-arm offbreak</option>
+                                        <option>Right-arm fast</option>
+                                        <option>Left-arm fast</option>
+                                        <option>Slow left-arm orthodox</option>
+                                        <option>Legbreak</option>
+                                        <option>Right-arm medium</option>
+                                        <option>Left-arm medium</option>
+                                    </datalist>
+                                </div>
+
+
 {#                                <div class="form-input">#}
 {#						            <label for="date" class="required">DATE</label>#}
 {#						            <input type="text" name="date" class="date" id="date" placeholder="DD-MON-YYYY">#}
@@ -69,11 +105,11 @@
 {#                                </div>#}
                                 <div class="form-input">
                                     <label for="phone_number" class="required">DATE</label>
-                                    <input type="date" name="phone_number" id="phone_number" placeholder="DD-MON-YYYY"/>
+                                    <input type="date" name="phone_number" id="phone_number" placeholder="DD-MON-YYYY" required/>
                                 </div>
                                 <div class="form-input">
                                     <label for="image">IMAGE</label>
-                                    <input type="file" name="image" id="image" accept="image/*"/>
+                                    <input type="file" name="image" id="image" accept="image/*" required/>
                                 </div>
 
 

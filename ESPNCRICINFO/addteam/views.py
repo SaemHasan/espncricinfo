@@ -13,16 +13,17 @@ def addteam(request):
         else:
             return redirect('login')
     else:
-        # name = request.POST['name']
-        # country = request.POST['country']
-        # Address = request.POST['address']
-        # street_no = request.POST['street_no']
-        # zip_code = request.POST['pincode']
-        # city = request.POST['city']
+        name = request.POST['full_name']
+        short_name = request.POST['short_name']
         file = request.FILES['file_image']
+        fname = file.name
         print(file.name)
-        # print(name, country, Address, street_no, zip_code, city)
         handle_uploaded_file(file)
+        cursor = connection.cursor()
+        # sql ="INSERT INTO TEAM VALUES(TEAM_ID=:tid,NAME=:tname,IMAGE=:timage);"
+        cursor.execute("INSERT INTO TEAM VALUES(:tid,:tname,:timage)", tid=short_name, tname=name, timage=fname)
+        connection.commit()
+        cursor.close()
         # return HttpResponse("File uploaded successfuly")
         return render(request, 'adminpage/index.html')
 

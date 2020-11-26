@@ -48,6 +48,19 @@ INSTALLED_APPS = [
     'playersingle',
     'seriesall',
     'signuppage',
+
+    'addmatch',
+    'addumpire',
+    'addseries',
+    'umpiresall',
+    'umpiresingle',
+    'coachall',
+    'coachsingle',
+    'matchall',
+    'matchsingle',
+    'groundsingle',
+    'teamsingle',
+    'playerofateam',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +71,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'ESPNCRICINFO.urls'

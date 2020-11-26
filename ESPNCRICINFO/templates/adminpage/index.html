@@ -26,7 +26,7 @@
                             <a onclick="myFunction()"> <img src="{% static 'homepage/img/logo3.png' %}" alt="ESPNCRICINFO" height="50" width="150"></a>
                             <p><a onclick="myFunction()">HOME</a> </p>
 {#							<span class="image avatar48"><img src="{% static 'adminpage/images/avatar.jpg' %}" alt="" /></span>#}
-							<h1 id="title">SAEM HASAN</h1>
+							<h1 id="title">{{first_name}}</h1>
 							<p>ADMIN</p>
 						</div>
 
@@ -102,24 +102,24 @@
                                             <a href="{% url 'addteam' %}"><h2>TEAM</h2></a>
 										</header>
 									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="{% static 'adminpage/images/match.jpg' %}" alt="" /></a>
+                                    <article class="item">
+										<a href="{% url 'addmatch' %}" class="image fit"><img src="{% static 'adminpage/images/match.jpg' %}" alt="" /></a>
 										<header>
-                                            <a href="#"><h2>MATCH</h2></a>
+                                            <a href="{% url 'addmatch' %}"><h2>MATCH</h2></a>
 										</header>
 									</article>
 								</div>
 								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="{% static 'adminpage/images/series.jpg' %}" alt="" /></a>
+                                    <article class="item">
+										<a href="{% url 'addseries' %}" class="image fit"><img src="{% static 'adminpage/images/series.jpg' %}" alt="" /></a>
 										<header>
-                                            <a href="#"><h2>SERIES</h2></a>
+                                            <a href="{% url 'addseries' %}"><h2>SERIES</h2></a>
 										</header>
 									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="{% static 'adminpage/images/umpire.jpg' %}" alt="" /></a>
+                                    <article class="item">
+										<a href="{% url 'addumpire' %}" class="image fit"><img src="{% static 'adminpage/images/umpire.jpg' %}" alt="" /></a>
 										<header>
-                                            <a href="#"><h2>UMPIRE</h2></a>
+                                            <a href="{% url 'addumpire' %}"><h2>UMPIRE</h2></a>
 										</header>
 									</article>
 								</div>

@@ -1,0 +1,149 @@
+{% extends 'homepage/base.html' %}
+      {% load static %}
+      {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'teamsingle/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsingle/css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'teamsingle/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsingle/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsingle/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'teamsingle/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'teamsingle/css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'teamsingle/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsingle/css/jquery.timepicker.css' %}">
+
+    
+    <link rel="stylesheet" href="{% static 'teamsingle/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsingle/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsingle/css/style.css' %}">
+  </head>
+  <body>
+
+    <div class="KW_progressContainer">
+      <div class="KW_progressBar">
+
+      </div>
+    </div>
+    <div class="page">
+
+    
+    <div id="colorlib-page">
+
+      <section class="ftco-section about-section">
+        <div class="container">
+          <div class="row d-flex my-5" data-scrollax-parent="true">
+
+            <div class="col-md-4 author-img" style="background-image: url('{% static image_path %}');" data-scrollax=" properties: { translateY: '-70%'}"></div>
+
+            <div class="col-md-2"></div>
+            <div class="col-md-6 wrap ftco-animate">
+              <div class="about-desc">
+                <h1 class="bold-text">About</h1>
+                <div class="p-5">
+                  <h2 class="mb-5">{{ name }}</h2>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-end mt-5">
+          	<div class="col-md-10">
+          		<div class="profile ftco-animate">
+	          		<h2 class="mb-4">Details about this Team</h2>
+	          		<div class="row my-5">
+		          		<div class="col-md-6">
+                            <h4 class="mb-4">Coaches of this team: </h4>
+                                {% for r in coach %}
+                                <tr>
+                                    <td>{{ r.fullname }}</td><br>
+                                </tr>
+                                {% endfor %}
+		          		</div>
+
+	          		</div>
+                    <table class="containertable">
+        <thead>
+            <tr>
+                <h4 class="mb-4">Winning matches of this team: </h4>
+                <th><h5>First Team</h5></th>
+                <th><h5>Second Team</h5></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in details %}
+            <tr>
+
+                <td>{{ r.team1_id }}</td>
+                <td>{{ r.team2_id }}</td>
+
+            </tr>
+        {% endfor %}
+
+        </tbody>
+</table>
+                <p><a id="{{name}}" onclick="getText(id)">SEE ALL PLAYERS OF THIS TEAM</a></p>
+          		</div>
+          	</div>
+          </div>
+        </div>
+      </section>
+      
+
+
+      <!-- loader -->
+      <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+      </div>
+
+    </div>
+    <script>
+          function getText(ID) {
+            var txt = document.getElementById(ID).id;
+            window.location.href = "{% url 'playerofateam' %}" +"?team="+txt;
+          }
+    </script>
+
+    <script src="{% static 'teamsingle/js/jquery.min.js' %}"></script>
+    <script src="{% static 'teamsingle/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'teamsingle/js/popper.min.js' %}"></script>
+    <script src="{% static 'teamsingle/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'teamsingle/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'teamsingle/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'teamsingle/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'teamsingle/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'teamsingle/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'teamsingle/js/aos.js' %}"></script>
+    <script src="{% static 'teamsingle/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'teamsingle/js/scrollax.min.js' %}"></script>
+    <script src="{% static 'teamsingle/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'teamsingle/js/jquery.timepicker.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'teamsingle/js/google-map.js' %}"></script>
+    <script src="{% static 'teamsingle/js/main.js' %}"></script>
+  <script>
+          document.getElementById('nav-about').hidden=true;
+          document.getElementById('nav-series').hidden=true;
+          document.getElementById('nav-teams').hidden=true;
+          document.getElementById('nav-contact').hidden=true;
+          document.getElementById('nav-grounds').hidden=true;
+          document.getElementById('nav-videos').hidden=true;
+          document.getElementById('nav-images').hidden=true;
+          document.getElementById('nav-stats').hidden=true;
+    </script>
+    
+  </body>
+</html>
+{% endblock %}

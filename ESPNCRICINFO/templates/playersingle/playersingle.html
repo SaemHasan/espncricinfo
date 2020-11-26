@@ -52,8 +52,11 @@
               <div class="about-desc">
                 <h1 class="bold-text">About</h1>
                 <div class="p-5">
-                  <h2 class="mb-5">{{ name }}</h2>
-                  <p>{{ details.first_name }}  {{ details.last_name }}      {{ details.date_of_bith }}      {{ details.nationality }}</p>
+                  <h2 class="mb-5">NAME: {{ name }}</h2>
+                    <p>First Name: {{ details.first_name }}</p>
+                    <p>Last Name: {{ details.last_name }} </p>
+                    <p>Date of Birth: {{ details.date_of_birth }}</p>
+                    <p>Nationality: {{ details.nationality }}</p>
                 </div>
               </div>
             </div>
@@ -62,108 +65,129 @@
           	<div class="col-md-10">
           		<div class="profile ftco-animate">
 	          		<h2 class="mb-4">Profile</h2>
-	          		<h4 class="mb-4">He is a cricketer</h4>
-	          		<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+	          		<h4 class="mb-4">{{ name }} is a {{ details.role }}</h4>
+{#	          		<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>#}
 	          		<div class="row my-5">
 		          		<div class="col-md-6">
 		          			<p><strong>Name:</strong> <span>{{ name }}</span></p>
-		          			<p><strong>Address:</strong> <span>88 West 21th Street, Suite 721 New York NY 10016</span></p>
-		          			<p><strong>Phone:</strong> <span>(123)-456-789</span></p>
-		          		</div>
-		          		<div class="col-md-6">
-		          			<p><strong>Name:</strong> <span>{{ name }}</span></p>
-		          			<p><strong>Address:</strong> <span>88 West 21th Street, Suite 721 New York NY 10016</span></p>
-		          			<p><strong>Phone:</strong> <span>(123)-456-789</span></p>
+		          			<p><strong>Nationality:</strong> <span>{{ details.nationality }}</span></p>
+{#		          			<p><strong>Phone:</strong> <span>(123)-456-789</span></p>#}
 		          		</div>
 	          		</div>
           		</div>
-
-          		<!--<div class="exp mt-5 ftco-animate">
-          			<h2 class="mb-4">Experience</h2>
+                <h1>{{ name }}'s FULL CAREER STAT</h1>
+          		<div class="exp mt-5 ftco-animate">
+          			<h2 class="mb-4">{{ name }}'s Batting STAT</h2>
           			<div class="exp-wrap py-4">
           				<div class="desc">
-	          				<h4>UX &amp; Interaction Designer <span> - Google Company</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2017 - Present</p>
+	          				<h4>Number of Matches Played <span> - {{ playerstat.matches }}</span> </h4>
           				</div>
           			</div>
 
           			<div class="exp-wrap py-4">
           				<div class="desc">
-	          				<h4>UX &amp; UI Designer <span> - QBootstrap.com</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2015 - 2017</p>
+	          				<h4>Scored Runs - {{ playerstat.scored_run }} </h4>
+
           				</div>
           			</div>
 
           			<div class="exp-wrap py-4">
           				<div class="desc">
-	          				<h4>Designer &amp; Developer <span> - Themeforest.net</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2014 - 2015</p>
+	          				<h4>Man of the Match in <span> {{ playerstat.motm }} match</span> </h4>
           				</div>
           			</div>
 
           			<div class="exp-wrap py-4">
           				<div class="desc">
-	          				<h4>Front-End Developer <span> - Big Comany</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2012 - 2014</p>
+	          				<h4>Scored Hundred(100+) <span> - {{ playerstat.hundred }} time</span> </h4>
           				</div>
           			</div>
-          		</div>-->
+                    <div class="exp-wrap py-4">
+          				<div class="desc">
+	          				<h4>Scored Fifty(50+) <span> - {{ playerstat.fifty }} time</span> </h4>
+          				</div>
+          			</div>
+                    <div class="exp-wrap py-4">
+          				<div class="desc">
+	          				<h4>Not out in <span> - {{ playerstat.notout }} match</span> </h4>
+          				</div>
+          			</div>
+                    <div class="exp-wrap py-4">
+          				<div class="desc">
+	          				<h4>Average Scored Run <span> - {{ playerstat.avgrun }} </span> </h4>
+          				</div>
+          			</div>
+                    <div class="exp-wrap py-4">
+          				<div class="desc">
+	          				<h4>Strike Rate <span> - {{ playerstat.strate }}</span> </h4>
+          				</div>
+          			</div>
+          		</div>
 
 
-          		<!--<div class="exp mt-5 ftco-animate">
-          			<h2 class="mb-4">Education</h2>
+          		<div class="exp mt-5 ftco-animate">
+          			<h2 class="mb-4">{{ name }}'s Bowling STAT</h2>
           			<div class="exp-wrap py-4">
           				<div class="desc">
-	          				<h4>Master Degree in Computer Science<span> - Harvard University</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2013 - 2014</p>
+	          				<h4>Number of Overs Bowled <span> - {{ playerstat.overs }} </span> </h4>
           				</div>
           			</div>
 
-          			<div class="exp-wrap py-4">
+                    <div class="exp-wrap py-4">
           				<div class="desc">
-	          				<h4>Bacheclor of Science in Computer Science<span> - Harvard University</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2009 - 2012</p>
+	          				<h4>Number of Wickets <span> - {{ playerstat.wickets }} </span> </h4>
           				</div>
           			</div>
 
-          			<div class="exp-wrap py-4">
+                    <div class="exp-wrap py-4">
           				<div class="desc">
-	          				<h4>Diploma in Information Technology<span> - Oxford University</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2008 - 2010</p>
+	          				<h4>Number of five wickets in a match <span> - {{ playerstat.fifer }} time</span> </h4>
           				</div>
           			</div>
 
-          			<div class="exp-wrap py-4">
+                    <div class="exp-wrap py-4">
           				<div class="desc">
-	          				<h4>Front-End Developer <span> - Big Comany</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2012 - 2014</p>
+	          				<h4>Given Runs <span> - {{ playerstat.givenrun }} </span> </h4>
           				</div>
           			</div>
-          		</div>-->
+
+                    <div class="exp-wrap py-4">
+          				<div class="desc">
+	          				<h4>Bowling Average <span> - {{ playerstat.bowl_avg }} </span> </h4>
+          				</div>
+          			</div>
+
+                    <div class="exp-wrap py-4">
+          				<div class="desc">
+	          				<h4>Bowling Strike Rate <span> - {{ playerstat.bowl_strate }} </span> </h4>
+          				</div>
+          			</div>
+          		</div>
+                <h1>Details about Matches {{ name }} played </h1>
+                {% for match in matches %}
+                   <div class="exp mt-5 ftco-animate">
+                       <h2>{{ match.team1 }} vs {{ match.team2 }} </h2>
+                       <h3>DATE: {{ match.date }}</h3>
+                       <h3>Match Scorecard: <button class="btn-success" onclick="myFunction('{{ match.mid }}')">Scorecard</button></h3>
+                   <div class="exp-wrap py-4">
+          				<div class="desc">
+	          				<h4>Balls Played: {{ match.balls }}         Scored Run:  {{ match.scored_run }} </h4>
+                            <h4>Fours:  {{ match.fours }}           Sixes: {{ match.sixes }}</h4>
+                            <h4>Not Out: {{ match.notout }}</h4>
+          				</div>
+                   </div>
+
+                   <div class="exp-wrap py-4">
+          				<div class="desc">
+	          				<h4>Overs Bowled: {{ match.overs }}         Given Run: <span> {{ match.givenrun }} </span> </h4>
+                            <h4>Wickets:  {{ match.wickets }} </h4>
+
+          				</div>
+                   </div>
+
+                   </div>
+                {% endfor %}
+
           	</div>
           </div>
         </div>
@@ -205,6 +229,15 @@
           document.getElementById('nav-videos').hidden=true;
           document.getElementById('nav-images').hidden=true;
           document.getElementById('nav-stats').hidden=true;
+    </script>
+  <script>
+            function myFunction(match_id) {
+              window.location.href = "{% url 'matchsingle' %}" +"?id="+match_id;
+            }
+          function getplayer(ID) {
+            var txt = document.getElementById(ID).innerText;
+            window.location.href = "{% url 'playersingle' %}" +"?name="+txt;
+          }
     </script>
     
   </body>

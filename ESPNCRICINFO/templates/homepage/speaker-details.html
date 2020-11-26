@@ -30,13 +30,33 @@
 {#                <a href=""><i class="fa fa-google-plus"></i></a>#}
 {#                <a href=""><i class="fa fa-linkedin"></i></a>#}
 {#              </div>#}
-              <p>SERIES HOST COUNTRY : {{ series.host }}</p>
+              <h3>SERIES HOST COUNTRY : {{ series.host }}</h3>
  
-              <p>MAN OF THE SERIES : {{ series.motm }}</p>
+              <h3 style="color: #0e1b4d">MAN OF THE SERIES : <a id="{{ series.motm }}" onclick="getplayer(id)"> {{ series.motm }}</a></h3>
 
-              <p>SERIES WINNER : {{ series.winner }}</p>
+              <h3>SERIES WINNER : {{ series.winner }}</h3>
             </div>
           </div>
+        <br>
+        <h1 style="color: #1c7430">Matches in the series</h1>
+        <br>
+        {% for match in matches %}
+        <br>
+        <div class="col-md-12">
+            <div >
+                <h1 style="color: #0e1b4d"> MATCH NO: {{ match.no }}</h1>
+                <h4 style="color: #00ad5f">Type: {{ match.type }}</h4>
+                <button class="btn-success" onclick="myFunction('{{ match.mid }}')">Match Scorecard</button>
+                <h4 style="color: #0b7dda">Man of the Match: <a id="{{ match.motm }}" onclick="getplayer(id)"> {{ match.motm }}</a></h4>
+                <h5>Weather: {{ match.weather }}</h5>
+                <h5>Match Winner: {{ match.winner }}</h5>
+                <h5>Toss Winner: {{ match.toss }}</h5>
+
+
+            </div>
+        </div>
+        <br><br>
+        {% endfor %}
           
         </div>
       </div>
@@ -55,5 +75,15 @@
           document.getElementById('nav-images').hidden=true;
           document.getElementById('nav-stats').hidden=true;
           </script>
+
+          <script>
+            function myFunction(match_id) {
+              window.location.href = "{% url 'matchsingle' %}" +"?id="+match_id;
+            }
+          function getplayer(ID) {
+            var txt = document.getElementById(ID).innerText;
+            window.location.href = "{% url 'playersingle' %}" +"?name="+txt;
+          }
+    </script>
 
 {% endblock %}

@@ -43,15 +43,16 @@
 
       <section class="ftco-section about-section">
         <div class="container">
-        <h1>MATCHES PLAYED IN THIS GROUND</h1>
+        <h1 style="color: #00ad5f">MATCHES PLAYED IN THIS GROUND</h1>
 
-            <table class="containertable">
+            <table class="containertable" border="1">
         <thead>
             <tr>
-                <th><h1>Furst Team</h1></th>
-                <th><h1>Second Team</h1></th>
-                <th><h1>Winner</h1></th>
-                <th><h1>Weather</h1></th>
+                <th><h3>First Team</h3></th>
+                <th><h3>Second Team</h3></th>
+                <th><h3>Winner</h3></th>
+                <th><h3>Weather</h3></th>
+                <th><h3>Scorecard</h3></th>
             </tr>
         </thead>
         <tbody>
@@ -62,6 +63,7 @@
                 <td>{{ r.team2_id }}</td>
                 <td>{{ r.winner }}</td>
                 <td>{{ r.weather }}</td>
+                <td><button class="btn-success" onclick="myFunction('{{ r.mid }}')">Scorecard</button></td>
 
             </tr>
         {% endfor %}
@@ -69,6 +71,25 @@
         </tbody>
 
 </table>
+
+    <br><br>
+        <h1 style="color: #00ad5f">Highest Wicket taker in this ground</h1>
+            <h2>FULL NAME: <a id="{{ highestwicket.fullname }}" onclick="getplayer(id)">{{ highestwicket.fullname }}</a></h2>
+        <h2>Number of Wickets : {{ highestwicket.wickets }}</h2>
+
+    <br><br>
+        <h1 style="color: #00ad5f">Highest Scored Runs Match in this ground</h1>
+        <h2>First Team: {{ highestRunMatch.team1 }}</h2>
+        <h2>Second Team: {{ highestRunMatch.team2 }}</h2>
+        <h2>SCORED RUNS: {{ highestRunMatch.runs }}</h2>
+        <h3>DATE OF THE MATCH: {{ highestRunMatch.date }}</h3>
+
+    <br><br>
+
+
+
+
+
 
 
 
@@ -113,7 +134,15 @@
           document.getElementById('nav-images').hidden=true;
           document.getElementById('nav-stats').hidden=true;
     </script>
-
+<script>
+            function myFunction(match_id) {
+              window.location.href = "{% url 'matchsingle' %}" +"?id="+match_id;
+            }
+          function getplayer(ID) {
+            var txt = document.getElementById(ID).innerText;
+            window.location.href = "{% url 'playersingle' %}" +"?name="+txt;
+          }
+    </script>
   </body>
 </html>
 {% endblock %}

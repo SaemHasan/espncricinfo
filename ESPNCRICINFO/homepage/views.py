@@ -60,11 +60,12 @@ def series_details(request):
     sql = "SELECT * FROM SERIES WHERE NAME='"+series_name+"'"
     cursor.execute(sql)
     result = cursor.fetchall()
-    cursor.close()
 
     dict_result = []
+    sid =""
 
     for r in result:
+        sid = r[0]
         id = r[0]
         name = r[1]
         host = r[2]
@@ -84,7 +85,33 @@ def series_details(request):
             image_link = "default.jpg"
         row = {'id': id, 'name': name, 'host': host, 'motm': fullname, 'winner': winner, 'image_link': image_link}
         dict_result.append(row)
-    return render(request, 'homepage/speaker-details.html', {'name': series_name, 'series': dict_result[0]})
+
+    cursor.execute("SELECT * FROM SERIES S, MATCH M WHERE S.SERIES_ID=M.SERIES_ID AND S.SERIES_ID=:SID", SID=sid)
+    result = cursor.fetchall()
+
+    Matches = []
+    matchno = 1
+    for r in result:
+        mid = r[6]
+        gid = r[7]
+        type = r[9]
+        motm = r[10]
+        motmFullName=""
+        print(motm)
+        if motm is not None:
+            cursor.execute("SELECT FIRST_NAME, LAST_NAME FROM PERSON WHERE PERSON_ID=:PID", PID=motm)
+            result2 = cursor.fetchall()[0]
+            motmFullName = result2[0]+ " "+ result2[1]
+        weather = r[11]
+        winner = r[12]
+        toss_win = r[13]
+        # video = r[15]
+
+        row = {'no': matchno, 'mid': mid, 'gid': gid, 'type': type, 'motm': motmFullName, 'weather': weather, 'winner': winner, 'toss': toss_win}
+        matchno = matchno+1
+        Matches.append(row)
+
+    return render(request, 'homepage/speaker-details.html', {'name': series_name, 'series': dict_result[0], 'matches': Matches})
 
 
 def teams(request):

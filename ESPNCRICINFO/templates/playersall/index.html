@@ -45,7 +45,7 @@ form.example::after {
 </head>
 <body>
 <br><br><br><br><br><br><br><br>
-<h1><span class="blue">&lt;PLAYERS</span><span class="blue"> TABLE&gt;</span> <span class="yellow"></span></h1>
+<h1>PLAYERS</h1>
 {#<h2>Created with love by <a href="http://pablogarciafernandez.com" target="_blank">Pablo García Fernández</a></h2>#}
 <h1> CLICK ON NAME TO SEE PLAYER DETAILS</h1>
           <div>
@@ -60,6 +60,7 @@ form.example::after {
 <table class="containertable">
 	<thead>
 		<tr>
+            <th><h1>RANK</h1></th>
 			<th><h1>IMAGE</h1></th>
 			<th><h1>FULL NAME</h1></th>
 {#			<th><h1>LAST NAME</h1></th>#}
@@ -71,10 +72,11 @@ form.example::after {
     {% for person in persons %}
 		<tr>
 {#			<td>{{ person.id }}</td>#}
+            <td>{{ person.rank }}</td>
             {% with 'playersingle/images/'|add:person.image_link as image_path %}
                 <td> <img src="{% static image_path %}" height="100" width="200"> </td>
             {% endwith %}
-            <td><a id="{{ person.id }}" onclick="getText(id)">{{ person.full_name }}</a></td>
+            <td><a id="{{ person.id }}" onclick="getSinglePlayer(id)">{{ person.full_name }}</a></td>
 {#            <td><a href="{% url 'playersingle' %}">{{ person.last_name }}</a></td>#}
 			<td>{{ person.date_of_birth }}</td>
             <td>{{ person.nationality }}</td>
@@ -84,7 +86,7 @@ form.example::after {
 	</tbody>
 </table>
     <script>
-          function getText(ID) {
+          function getSinglePlayer(ID) {
             var txt = document.getElementById(ID).innerText;
             window.location.href = "{% url 'playersingle' %}" +"?name="+txt;
           }

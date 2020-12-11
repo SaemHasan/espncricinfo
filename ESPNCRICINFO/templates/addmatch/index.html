@@ -31,14 +31,14 @@
                         <a href="{% url 'adminpage' %}"> <button type="button" class="btn btn-primary btn-lg" onclick="{% url 'adminpage' %}">ADMIN PAGE</button></a>
                     </div>
 
-                    <img src="{% static 'addplayer/images/add-player.jpg' %}" alt="">
+                    <img src="{% static 'addmatch/images/addmatch.jpg' %}" alt="">
 
 
                 </div>
 
                 <div>
                         <br>
-                        <h2>ENTER MATCH INFO </h2>
+                    <center><h2>ENTER MATCH INFO </h2></center>
 {#                        <p>while seats are available !</p>#}
                 </div>
 
@@ -48,35 +48,59 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <div class="form-input">
-                                    <label for="first_team" class="required">First Team</label>
-                                    <input type="text" name="first_team" id="first_team" />
+                                    <label for="team1_opp" class="required">Select First Team</label>
+                                    <input list="team1_opp" name="team1" id="team1" required/>
+                                    <datalist id="team1_opp">
+                                        {% for t in team %}
+                                            <option>{{ t.team_name }}</option>
+                                        {% endfor %}
+                                    </datalist>
                                 </div>
                                 <div class="form-input">
-                                    <label for="second_team" class="required">Second Team</label>
-                                    <input type="text" name="second_team" id="second_team" />
+                                    <label for="team2_opp" class="required">Select Second Team</label>
+                                    <input list="team2_opp" name="team2" id="team2" required/>
+                                    <datalist id="team2_opp">
+                                        {% for t in team %}
+                                            <option>{{ t.team_name }}</option>
+                                        {% endfor %}
+                                    </datalist>
                                 </div>
                                 <div class="form-input">
-                                    <label for="company" class="required">Series Name</label>
-                                    <input type="text" name="company" id="company" />
+                                    <label for="series_name_in" class="required">Select Series</label>
+                                    <input list="series_name_in" name="s_name_in" id="s_name_in" required/>
+                                    <datalist id="series_name_in">
+                                        {% for s in series %}
+                                            <option>{{ s.series_name }}</option>
+                                        {% endfor %}
+
+
+                                    </datalist>
                                 </div>
                                 <div class="form-input">
-                                    <label for="ground_name" class="required">Ground Name</label>
-                                    <input type="text" name="ground_name" id="ground_name" />
+                                    <label for="ground_add_opp" class="required">Select Ground</label>
+                                    <input list="ground_add_opp" name="in_ground" id="in_ground" required/>
+                                    <datalist id="ground_add_opp">
+                                        {% for g in ground %}
+                                            <option>{{ g.ground_name }}</option>
+                                        {% endfor %}
+
+
+                                    </datalist>
                                 </div>
                                 <div class="form-radio">
                                 <label for="match_type" class="radio-label">Match Type</label>
                                 <div class="form-radio-item">
-                                    <input type="radio" name="match_type" id="ODI" checked>
+                                    <input type="radio" name="match_type_ODI" id="ODI">
                                     <label for="ODI">ODI</label>
                                     <span class="check"></span>
                                 </div>
                                 <div class="form-radio-item">
-                                    <input type="radio" name="match_type" id="TEST">
+                                    <input type="radio" name="match_type_TEST" id="TEST">
                                     <label for="TEST">TEST</label>
                                     <span class="check"></span>
                                 </div>
                                 <div class="form-radio-item">
-                                <input type="radio" name="match_type" id="T20">
+                                <input type="radio" name="match_type_T20" id="T20">
                                 <label for="T20">T20</label>
                                 <span class="check"></span>
                                 </div>
@@ -86,25 +110,70 @@
                                     <input type="text" name="weather" id="weather" />
                                 </div>
                                 <div class="form-input">
-                                    <label for="winner" class="required">Wining Team</label>
-                                    <input type="text" name="winner" id="winner" />
+                                    <label for="win_opp">Winning Team</label>
+                                    <input list="win_opp" name="winner" id="winner"/>
+                                    <datalist id="win_opp">
+                                        {% for t in team %}
+                                            <option>{{ t.team_name }}</option>
+                                        {% endfor %}
+                                    </datalist>
                                 </div>
                                 <div class="form-input">
-                                    <label for="motm" class="required">Man of the Match</label>
-                                    <input type="text" name="motm" id="motm" />
+                                    <label for="motm_lbl">Man of the Match</label>
+                                    <input list="motm_lbl" name="motm" id="motm"/>
+                                    <datalist id="motm_lbl">
+                                        {% for p in player %}
+                                            <option>{{ p.fullname }}</option>
+                                        {% endfor %}
+
+
+                                    </datalist>
                                 </div>
                                 <div class="form-input">
-                                    <label for="player_score">PLAYER SCORE</label>
-                                    <input type="file" name="player_score" id="player_score"/>
+                                    <label for="ump_1">Select Umpire 1 </label>
+                                    <input list="ump_1" name="ump1" id="ump1"/>
+                                    <datalist id="ump_1">
+                                        {% for u in umpire %}
+                                            <option>{{ u.fullname }}</option>
+                                        {% endfor %}
+
+
+                                    </datalist>
+                                </div>
+                                <div class="form-input">
+                                    <label for="ump_2">Select Umpire 2 </label>
+                                    <input list="ump_2" name="ump2" id="ump2"/>
+                                    <datalist id="ump_2">
+                                        {% for u in umpire %}
+                                            <option>{{ u.fullname }}</option>
+                                        {% endfor %}
+
+
+                                    </datalist>
+                                </div>
+                                <div class="form-input">
+                                    <label for="ump_3">Select Umpire 3 </label>
+                                    <input list="ump_3" name="ump3" id="ump3"/>
+                                    <datalist id="ump_3">
+                                        {% for u in umpire %}
+                                            <option>{{ u.fullname }}</option>
+                                        {% endfor %}
+
+                                    </datalist>
+                                </div>
+                                <div class="form-input">
+                                    <label for="match_date" class="required">MATCH_DATE</label>
+                                    <input type="date" name="match_date" id="match_date" placeholder="DD-MON-YYYY"/>
+                               </div>
+                                <div class="form-input">
+                                    <label for="player_score" class="required">PLAYER SCORE</label>
+                                    <input type="file" name="player_score" id="player_score" required/>
                                 </div>
 {#                                <div class="form-input">#}
 {#						            <label for="date" class="required">DATE</label>#}
 {#						            <input type="text" name="date" class="date" id="date" placeholder="DD-MON-YYYY">#}
 {#                                </div>#}
-{#                                <div class="form-input">#}
-{#                                    <label for="email" class="required">DATE</label>#}
-{#                                    <input type="text" name="email" id="email" placeholder="DD-MON-YYYY"/>#}
-{#                                </div>#}
+
 
 
 

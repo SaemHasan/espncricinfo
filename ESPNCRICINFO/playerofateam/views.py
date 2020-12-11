@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render, redirect
 import cx_Oracle, json
 
@@ -10,16 +12,20 @@ players_fullname = []
 
 def playerofateam(request):
     if request.method == "GET":
+        team_name=request.GET['team']
         players_fullname.clear()
         cursor = connection.cursor()
-        sql = "SELECT * FROM PERSON"
+        sql="SELECT * FROM (SELECT * FROM PERSON P1, PLAYER P2  WHERE P1.PERSON_ID=P2.PLAYER_ID) P LEFT OUTER JOIN PLAYER_STAT PS ON (P.PLAYER_ID=PS.PLAYER_ID) LEFT OUTER JOIN STAT S ON (PS.STAT_ID=S.STAT_ID) JOIN TEAM_PLAYER TP ON (TP.PLAYER_ID=P.PLAYER_ID) WHERE TP.TEAM_ID=(SELECT TEAM_ID FROM TEAM WHERE NAME='"+team_name+"') ORDER BY S.RATING DESC NULLS LAST, PS.TOTAL_RUN DESC NULLS LAST"
+        #sql = "SELECT * FROM TEAM T JOIN TEAM_PLAYER TP ON(T.TEAM_ID=TP.TEAM_ID) JOIN PERSON P ON(P.PERSON_ID=TP.PLAYER_ID) WHERE T.NAME='"+team_name+"'"
         cursor.execute(sql)
         result = cursor.fetchall()
         cursor.close()
         dict_result = []
         first_name_list = []
         last_name_list = []
+        rank=0
         for r in result:
+            rank=rank+1
             id = r[0]
             first_name = r[1]
             last_name = r[2]
@@ -29,11 +35,13 @@ def playerofateam(request):
             last_name_list.append(last_name)
             nationality = r[3]
             dob = r[4]
+            format = "%B %d, %Y"  # The format
+            dob2 = datetime.datetime.strptime(str(dob)[:-9], '%Y-%m-%d').strftime(format)
             image_link = r[5]
             if image_link is None:
                 image_link = "default.jpg"
             row = {'id': id, 'first_name': first_name, 'last_name': last_name, 'full_name': full_name,
-                   'nationality': nationality, 'date_of_birth': dob, 'image_link': image_link}
+                   'nationality': nationality, 'date_of_birth': dob2, 'image_link': image_link, 'rank':rank}
             dict_result.append(row)
 
         json_names = json.dumps(players_fullname)

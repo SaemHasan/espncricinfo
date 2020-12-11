@@ -44,15 +44,15 @@
       <section class="ftco-section about-section">
         <div class="container">
           <div class="row d-flex my-5" data-scrollax-parent="true">
-
-            <div class="col-md-4 author-img" style="background-image: url('{% static image_path %}');" data-scrollax=" properties: { translateY: '-70%'}"></div>
-
+              {% with 'homepage/img/speakers/'|add:image_id as image_path %}
+            <div class="col-md-2" style="background-image: url('{% static image_path %}');background-size: cover;"></div>
+              {% endwith %}
             <div class="col-md-2"></div>
             <div class="col-md-6 wrap ftco-animate">
               <div class="about-desc">
-                <h1 class="bold-text">About</h1>
+                <h1 class="bold-text">TEAM</h1>
                 <div class="p-5">
-                  <h2 class="mb-5">{{ name }}</h2>
+                    <h2 style="color:orangered" class="mb-5"><b>{{ name }}</b></h2>
                   <p></p>
                 </div>
               </div>
@@ -61,13 +61,17 @@
           <div class="row d-flex justify-content-end mt-5">
           	<div class="col-md-10">
           		<div class="profile ftco-animate">
-	          		<h2 class="mb-4">Details about this Team</h2>
+	          		<h2 style="color:deepskyblue" class="mb-4">Details about this Team</h2>
+                        <h5>Total Win: {{ team_stat.total_win }}</h5>
+                        <h5>Total Lose: {{ team_stat.total_lose }}</h5>
+                        <h5>Not Played: {{ team_stat.not_played }}</h5>
+                         <h5>Team Rating: {{ rate }}</h5>
 	          		<div class="row my-5">
 		          		<div class="col-md-6">
-                            <h4 class="mb-4">Coaches of this team: </h4>
+                            <h4 style="color:deepskyblue" class="mb-4">Coaches of this team: </h4>
                                 {% for r in coach %}
                                 <tr>
-                                    <td>{{ r.fullname }}</td><br>
+                                    <td><h5>{{ r.fullname }}</h5> From <h5>{{ r.start_date }}</h5></td><br>
                                 </tr>
                                 {% endfor %}
 		          		</div>
@@ -76,25 +80,49 @@
                     <table class="containertable">
         <thead>
             <tr>
-                <h4 class="mb-4">Winning matches of this team: </h4>
-                <th><h5>First Team</h5></th>
-                <th><h5>Second Team</h5></th>
+                <h4 style="color:deepskyblue" class="mb-4">Winning matches of this team: </h4>
+                {% if details|length %}
+                    {% for r in details %}
+                    <tr>
+
+                        <td><h5>{{ r.team1_name }}&nbsp;&nbsp;&nbsp;&nbsp;</h5></td>
+                        <td><h6>VS&nbsp;&nbsp;&nbsp;&nbsp; </h6></td>
+                        <td><h5>{{ r.team2_name }}&nbsp;&nbsp;&nbsp;&nbsp;</h5></td>
+                        <td><h5> ON {{ r.match_date }}&nbsp;&nbsp;&nbsp;&nbsp;</h5></td>
+                        <td><button class="btn-danger" onclick="viewWinMatchTeam('{{ r.match_id }}')">Scorecard</button></td>
+
+                    </tr>
+                {% endfor %}
+                {% else %}
+                    <th><h5 style="color:deepskyblue">No match won by this team.</h5></th>
+
+                {% endif %}
 
             </tr>
         </thead>
-        <tbody>
-            {% for r in details %}
-            <tr>
 
-                <td>{{ r.team1_id }}</td>
-                <td>{{ r.team2_id }}</td>
-
-            </tr>
-        {% endfor %}
-
-        </tbody>
 </table>
-                <p><a id="{{name}}" onclick="getText(id)">SEE ALL PLAYERS OF THIS TEAM</a></p>
+                <br><br>
+                {% if best.fullname is not None %}
+                <h5>Best Batsman of {{name}}: <a style="color:lightgreen;" id="{{ best.fullname }}" onclick="getthisplayer(id)">{{ best.fullname }}</a></h5>
+                {% else %}
+                    <h5>Best Batsman of {{name}}: No Batsman added in this team.</h5>
+                {% endif %}
+                <br>
+                {% if best2.fullname is not None %}
+                <h5>Best Bowler of {{ name }}: <a style="color:lightgreen;" id="{{ best2.fullname }}" onclick="getthisplayer(id)">{{ best2.fullname }}</a></h5>
+                                {% else %}
+                    <h5>Best Bowler of {{ name }}: No Bowler added in this team.</h5>
+                {% endif %}
+                <br>
+                {% if best2.fullname is not None %}
+                <h5>Best Allrounder of {{ name }}: <a  style="color:lightgreen;" id="{{ best3.fullname }}" onclick="getthisplayer(id)">{{ best3.fullname }}</a></h5>
+                                                {% else %}
+                    <h5>Best Allrounder of {{ name }}: No Allrounder added in this team.</h5>
+                {% endif %}
+                <br>
+
+                <h5><a style="color:darkorange;" id="{{name}}" onclick="getAllPlayers(id)">CLICK TO SEE ALL PLAYERS OF THIS TEAM</a></h5>
           		</div>
           	</div>
           </div>
@@ -109,8 +137,14 @@
       </div>
 
     </div>
+        <script>
+            function viewWinMatchTeam(match_id) {
+              window.location.href = "{% url 'matchsingle' %}" +"?id="+match_id;
+            }
+
+    </script>
     <script>
-          function getText(ID) {
+          function getAllPlayers(ID) {
             var txt = document.getElementById(ID).id;
             window.location.href = "{% url 'playerofateam' %}" +"?team="+txt;
           }
@@ -142,6 +176,12 @@
           document.getElementById('nav-videos').hidden=true;
           document.getElementById('nav-images').hidden=true;
           document.getElementById('nav-stats').hidden=true;
+    </script>
+      <script>
+          function getthisplayer(ID) {
+            var txt = document.getElementById(ID).innerText;
+            window.location.href = "{% url 'playersingle' %}" +"?name="+txt;
+          }
     </script>
     
   </body>

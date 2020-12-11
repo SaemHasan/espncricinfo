@@ -15,4 +15,5 @@ urlpatterns = [
     path('coachall/', include('coachall.urls')),
     path('matchall/', include('matchall.urls')),
     path('teamsingle/', include('teamsingle.urls')),
+    path('records/', include('records.urls')),
 ]

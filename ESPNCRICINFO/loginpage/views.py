@@ -32,11 +32,13 @@ def loginuser(request):
         return render(request, 'loginpage/index.html')
     else:
         user = authenticate(request, username=request.POST['name'], password=request.POST['password'])
-        print(user)
+        # print(user)
         if user is None:
             return render(request, 'loginpage/index.html', {"error": "*username or password is wrong"})
         else:
             request.session['loginstatus'] = True
             # login(request, user)
-            data={'name':user}
+            data = {'name': user}
+            print(str(user))
+            request.session['username'] = str(user)
             return redirect('adminpage')

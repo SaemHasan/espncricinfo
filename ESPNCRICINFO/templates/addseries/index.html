@@ -28,67 +28,81 @@
 
             <div class="signup-content">
                 <div class="signup-img">
+                    <br><br>
                     <img src="{% static 'addseries/images/addseries.jpg' %}" alt="">
                 </div>
                 <div class="signup-form">
                     <form method="POST" class="register-form" id="register-form" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <h2>ENTER SERIES DETAILS</h2>
+                        <h2>ENTER A SERIES DETAILS</h2>
 
                         <div class="form-group">
-                            <label for="name">Series Name :</label>
+                            <label for="name" class="required">Series Name :</label>
                             <input type="text" name="name" id="name" required/>
                         </div>
+                        <div class="form-input">
+                            <label for="team1_opp" class="required">Host Country(Team 1) :</label>
+                            <input list="team1_opp" name="team1" id="team1" required/>
+                            <datalist id="team1_opp">
+                                {% for t in team %}
+                                    <option>{{ t.team_name }}</option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                        <div class="form-input">
+                            <label for="team2_opp" class="required">Team 2 :</label>
+                            <input list="team2_opp" name="team2" id="team2" required/>
+                            <datalist id="team2_opp">
+                                {% for t in team %}
+                                    <option>{{ t.team_name }}</option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                        <div class="form-input">
+                            <label for="team3_opp">Team 3 :</label>
+                            <input list="team3_opp" name="team3" id="team3"/>
+                            <datalist id="team3_opp">
+                                {% for t in team %}
+                                    <option>{{ t.team_name }}</option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                        <div class="form-input">
+                            <label for="team4_opp">Team 4 :</label>
+                            <input list="team4_opp" name="team4" id="team4"/>
+                            <datalist id="team4_opp">
+                                {% for t in team %}
+                                    <option>{{ t.team_name }}</option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                        <div class="form-input">
+                            <label for="winner_opp">Winner :</label>
+                            <input list="winner_opp" name="winner" id="winner"/>
+                            <datalist id="winner_opp">
+                                {% for t in team %}
+                                    <option>{{ t.team_name }}</option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                        <div class="form-input">
+                            <label for="motm_lbl">Man of the Series :</label>
+                            <input list="motm_lbl" name="motm" id="motm"/>
+                            <datalist id="motm_lbl">
+                                {% for p in player %}
+                                    <option>{{ p.fullname }}</option>
+                                {% endfor %}
 
-                        <div class="form-group">
-                            <label for="host">Host Country :</label>
-                            <input type="text" name="host" id="host" required/>
+                            </datalist>
                         </div>
-                        <div class="form-group">
-                            <label for="winner">Winner :</label>
-                            <input type="text" name="winner" id="winner" required/>
+                         <div class="form-input">
+                            <label for="start_date" class="required">START DATE</label>
+                            <input type="date" name="start_date" id="start_date" placeholder="DD-MON-YYYY" required/>
                         </div>
-                        <div class="form-group">
-                            <label for="mots">Man of the Series :</label>
-                            <input type="text" name="mots" id="mots" required/>
+                        <div class="form-input">
+                            <label for="end_date" class="required">END DATE</label>
+                            <input type="date" name="end_date" id="end_date" placeholder="DD-MON-YYYY" required/>
                         </div>
-                        <!--<div class="form-radio">
-                            <label for="gender" class="radio-label">Gender :</label>
-                            <div class="form-radio-item">
-                                <input type="radio" name="gender" id="male" checked>
-                                <label for="male">Male</label>
-                                <span class="check"></span>
-                            </div>
-                            <div class="form-radio-item">
-                                <input type="radio" name="gender" id="female">
-                                <label for="female">Female</label>
-                                <span class="check"></span>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="state">State :</label>
-                                <div class="form-select">
-                                    <select name="state" id="state">
-                                        <option value=""></option>
-                                        <option value="us">America</option>
-                                        <option value="uk">English</option>
-                                    </select>
-                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="city">City :</label>
-                                <div class="form-select">
-                                    <select name="city" id="city">
-                                        <option value=""></option>
-                                        <option value="losangeles">Los Angeles</option>
-                                        <option value="washington">Washington</option>
-                                    </select>
-                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                                </div>
-                            </div>
-                        </div>-->
 
                         <div class="form-group">
                             <label for="image">IMAGE :</label>

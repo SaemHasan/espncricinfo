@@ -50,12 +50,13 @@
             <div class="col-md-2"></div>
             <div class="col-md-6 wrap ftco-animate">
               <div class="about-desc">
-                <h1 class="bold-text">About</h1>
+                <h1 class="bold-text">PLAYER</h1>
                 <div class="p-5">
                   <h2 class="mb-5">NAME: {{ name }}</h2>
                     <p>First Name: {{ details.first_name }}</p>
                     <p>Last Name: {{ details.last_name }} </p>
                     <p>Date of Birth: {{ details.date_of_birth }}</p>
+                    <p>Age : {{ age }}</p>
                     <p>Nationality: {{ details.nationality }}</p>
                 </div>
               </div>
@@ -71,6 +72,8 @@
 		          		<div class="col-md-6">
 		          			<p><strong>Name:</strong> <span>{{ name }}</span></p>
 		          			<p><strong>Nationality:</strong> <span>{{ details.nationality }}</span></p>
+                            <p><strong>Rating:</strong> <span>{{ playerstat.rating }}</span></p>
+
 {#		          			<p><strong>Phone:</strong> <span>(123)-456-789</span></p>#}
 		          		</div>
 	          		</div>
@@ -192,7 +195,7 @@
           </div>
         </div>
       </section>
-      
+
 
 
       <!-- loader -->

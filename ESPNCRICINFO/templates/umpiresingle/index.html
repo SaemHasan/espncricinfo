@@ -50,10 +50,10 @@
             <div class="col-md-2"></div>
             <div class="col-md-6 wrap ftco-animate">
               <div class="about-desc">
-                <h1 class="bold-text">About</h1>
+                <h1 class="bold-text">UMPIRE</h1>
                 <div class="p-5">
-                  <h2 class="mb-5">{{ name }}</h2>
-                  <p>{{ details.first_name }}  {{ details.last_name }}      {{ details.date_of_bith }}      {{ details.nationality }}</p>
+                  <h2 style="color:orangered" class="mb-5">{{ name }}</h2>
+                    <p>{{ details.nationality }}</p>
                 </div>
               </div>
             </div>
@@ -61,109 +61,42 @@
           <div class="row d-flex justify-content-end mt-5">
           	<div class="col-md-10">
           		<div class="profile ftco-animate">
-	          		<h2 class="mb-4">Profile</h2>
-	          		<h4 class="mb-4">He is an Umpire</h4>
-	          		<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+	          		<h2 style="color:deepskyblue" class="mb-4">Profile</h2>
+	          		<h4 class="mb-4">He is an Umpire.</h4>
+                     <h4 class="mb-4">Date of Birth: {{ details.date_of_birth }}</h4>
+                <h4 class="mb-4">Age : {{ age }}</h4>
+
+                <h4 class="mb-4"> No of Matches Conducted by him: {{ number }}</h4>
+                <br><br>
+
+                    <table class="containertable">
+        <thead>
+            <tr>
+                <h4 style="color:deepskyblue"class="mb-4">Matches conducted by him: </h4>
+                {% if history|length %}
+                    {% for r in history %}
+                    <tr>
+
+                        <td><h5>{{ r.team1_name }}&nbsp;&nbsp;&nbsp;&nbsp;</h5></td>
+                        <td><h6>VS&nbsp;&nbsp;&nbsp;&nbsp; </h6></td>
+                        <td><h5>{{ r.team2_name }}&nbsp;&nbsp;&nbsp;&nbsp;</h5></td>
+                        <td><h5> ON {{ r.match_date }}&nbsp;&nbsp;&nbsp;&nbsp;</h5></td>
+                        <td><button class="btn-danger" onclick="viewSingleMatchinumpire('{{ r.match_id }}')">Scorecard</button></td>
+
+                    </tr>
+                {% endfor %}
+                {% else %}
+                    <th><h5>No match was conducted by him.</h5></th>
+
+                {% endif %}
+            </tr>
+        </thead>
+
+</table>
+
 	          		<div class="row my-5">
-		          		<div class="col-md-6">
-		          			<p><strong>Name:</strong> <span>{{ name }}</span></p>
-		          			<p><strong>Address:</strong> <span>88 West 21th Street, Suite 721 New York NY 10016</span></p>
-		          			<p><strong>Phone:</strong> <span>(123)-456-789</span></p>
-		          		</div>
-		          		<div class="col-md-6">
-		          			<p><strong>Name:</strong> <span>{{ name }}</span></p>
-		          			<p><strong>Address:</strong> <span>88 West 21th Street, Suite 721 New York NY 10016</span></p>
-		          			<p><strong>Phone:</strong> <span>(123)-456-789</span></p>
-		          		</div>
 	          		</div>
           		</div>
-
-          		<!--<div class="exp mt-5 ftco-animate">
-          			<h2 class="mb-4">Experience</h2>
-          			<div class="exp-wrap py-4">
-          				<div class="desc">
-	          				<h4>UX &amp; Interaction Designer <span> - Google Company</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2017 - Present</p>
-          				</div>
-          			</div>
-
-          			<div class="exp-wrap py-4">
-          				<div class="desc">
-	          				<h4>UX &amp; UI Designer <span> - QBootstrap.com</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2015 - 2017</p>
-          				</div>
-          			</div>
-
-          			<div class="exp-wrap py-4">
-          				<div class="desc">
-	          				<h4>Designer &amp; Developer <span> - Themeforest.net</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2014 - 2015</p>
-          				</div>
-          			</div>
-
-          			<div class="exp-wrap py-4">
-          				<div class="desc">
-	          				<h4>Front-End Developer <span> - Big Comany</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2012 - 2014</p>
-          				</div>
-          			</div>
-          		</div>-->
-
-
-          		<!--<div class="exp mt-5 ftco-animate">
-          			<h2 class="mb-4">Education</h2>
-          			<div class="exp-wrap py-4">
-          				<div class="desc">
-	          				<h4>Master Degree in Computer Science<span> - Harvard University</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2013 - 2014</p>
-          				</div>
-          			</div>
-
-          			<div class="exp-wrap py-4">
-          				<div class="desc">
-	          				<h4>Bacheclor of Science in Computer Science<span> - Harvard University</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2009 - 2012</p>
-          				</div>
-          			</div>
-
-          			<div class="exp-wrap py-4">
-          				<div class="desc">
-	          				<h4>Diploma in Information Technology<span> - Oxford University</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2008 - 2010</p>
-          				</div>
-          			</div>
-
-          			<div class="exp-wrap py-4">
-          				<div class="desc">
-	          				<h4>Front-End Developer <span> - Big Comany</span> </h4>
-	          				<p class="location">Germany - Berlin</p>
-          				</div>
-          				<div class="year">
-          					<p>2012 - 2014</p>
-          				</div>
-          			</div>
-          		</div>-->
           	</div>
           </div>
         </div>
@@ -177,7 +110,12 @@
       </div>
 
     </div>
+    <script>
+            function viewSingleMatchinumpire(match_id) {
+              window.location.href = "{% url 'matchsingle' %}" +"?id="+match_id;
+            }
 
+    </script>
 
     <script src="{% static 'playersingle/js/jquery.min.js' %}"></script>
     <script src="{% static 'playersingle/js/jquery-migrate-3.0.1.min.js' %}"></script>

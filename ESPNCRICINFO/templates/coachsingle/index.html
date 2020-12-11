@@ -50,10 +50,10 @@
             <div class="col-md-2"></div>
             <div class="col-md-6 wrap ftco-animate">
               <div class="about-desc">
-                <h1 class="bold-text">About</h1>
+                <h1 class="bold-text">COACH</h1>
                 <div class="p-5">
-                  <h2 class="mb-5">{{ name }}</h2>
-                  <p>{{ details.first_name }}  {{ details.last_name }}      {{ details.date_of_bith }}      {{ details.nationality }}</p>
+                    <h2 style="color:orangered" class="mb-5"><b>{{ name }}</b></h2>
+                  <p>{{ details.nationality }}</p>
                 </div>
               </div>
             </div>
@@ -61,20 +61,21 @@
           <div class="row d-flex justify-content-end mt-5">
           	<div class="col-md-10">
           		<div class="profile ftco-animate">
-	          		<h2 class="mb-4">Profile</h2>
-	          		<h4 class="mb-4">He is a Coach</h4>
-	          		<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+	          		<h2 style="color:deepskyblue" class="mb-4">Profile</h2>
+	          		<h4 class="mb-4">{{ name }} is a Coach.</h4>
+                    <h4 class="mb-4">He started his coaching carrier from {{ teamcoached.s_year }}.</h4>
+                    <h4 class="mb-4">Date of Birth: {{ details.date_of_birth }}</h4>
+
+                    <h4 class="mb-4">Age : {{ age }}</h4>
+                    <br><br>
+                    <h3 style="color:deepskyblue" class="mb-4">Teams trained by him: </h3>
+                    <h4>{{ teamcoached.teamid }}</h4>
+                    <p>Started From: </p>
+                    <h4>{{ teamcoached.s_date }}</h4>
+
+
 	          		<div class="row my-5">
-		          		<div class="col-md-6">
-		          			<p><strong>Name:</strong> <span>{{ name }}</span></p>
-		          			<p><strong>Address:</strong> <span>88 West 21th Street, Suite 721 New York NY 10016</span></p>
-		          			<p><strong>Phone:</strong> <span>(123)-456-789</span></p>
-		          		</div>
-		          		<div class="col-md-6">
-		          			<p><strong>Name:</strong> <span>{{ name }}</span></p>
-		          			<p><strong>Address:</strong> <span>88 West 21th Street, Suite 721 New York NY 10016</span></p>
-		          			<p><strong>Phone:</strong> <span>(123)-456-789</span></p>
-		          		</div>
+
 	          		</div>
           		</div>
 

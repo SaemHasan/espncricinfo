@@ -59,7 +59,7 @@
                 {% endwith %}
               <div class="details">
 
-                  <h3><a id="{{ r.id }}" onclick="getText(id)">{{ r.name }}</a></h3>
+                  <h3><a id="{{ r.id }}" onclick="getmySeries(id)">{{ r.name }}</a></h3>
 {#                <p>Quas alias incidunt</p>#}
                 <!--<div class="social">
                   <a href=""><i class="fa fa-twitter"></i></a>
@@ -121,17 +121,17 @@
 {#          <p>Here is our event schedule</p>#}
         </div>
 
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" href="#day-1" role="tab" data-toggle="tab">Page 1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#day-2" role="tab" data-toggle="tab">Page 2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#day-3" role="tab" data-toggle="tab">Page 3</a>
-          </li>
-        </ul>
+{#        <ul class="nav nav-tabs" role="tablist">#}
+{#          <li class="nav-item">#}
+{#            <a class="nav-link active" href="#day-1" role="tab" data-toggle="tab">Page 1</a>#}
+{#          </li>#}
+{#          <li class="nav-item">#}
+{#            <a class="nav-link" href="#day-2" role="tab" data-toggle="tab">Page 2</a>#}
+{#          </li>#}
+{#          <li class="nav-item">#}
+{#            <a class="nav-link" href="#day-3" role="tab" data-toggle="tab">Page 3</a>#}
+{#          </li>#}
+{#        </ul>#}
 
         <h3 class="sub-heading">Here we can see team's name with some details </h3>
 
@@ -150,7 +150,7 @@
                             <img src="{% static image_path %}" alt="team logo">
                             {% endwith %}
                         </div>
-                        <h4> {{ r.name }}<span>     {{ r.id }}</span></h4>
+                        <h4> <a id="{{ r.name }}" onclick="getmyTeam2(id)">{{ r.name }}</a><span>     {{ r.id }}</span></h4>
                     <p></p>
                     </div>
                   </div>
@@ -624,56 +624,56 @@
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="supporter-logo">
 {#              <img src="{% static 'img/supporters/1.png' %}" class="img-fluid" alt="">#}
-                <h1><a href="{% url 'teams' %}">Teams</a></h1>
+                <h1><b><a href="{% url 'teams' %}">Teams</a></b></h1>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="supporter-logo">
 {#              <img src="{% static 'img/supporters/2.png' %}" class="img-fluid" alt="">#}
-                <h1><a href="">Records</a></h1>
+                <h1><b><a href="{% url 'records' %}">Records</a></b></h1>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="supporter-logo">
 {#              <img src="{% static 'img/supporters/3.png' %}" class="img-fluid" alt="">#}
-                <h1><a href="{% url 'playersall' %}">Players</a></h1>
+                <h1><b><a href="{% url 'playersall' %}">Players</a></b></h1>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="supporter-logo">
 {#              <img src="{% static 'img/supporters/4.png' %}" class="img-fluid" alt="">#}
-                <h1><a href="{% url 'grounds' %}">Grounds</a></h1>
+                <h1><b><a href="{% url 'grounds' %}">Grounds</a></b></h1>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="supporter-logo">
 {#              <img src="{% static 'img/supporters/5.png' %}" class="img-fluid" alt="">#}
-                <h1><a href="{% url 'seriesall' %}">Series</a></h1>
+                <h1><b><a href="{% url 'seriesall' %}">Series</a></b></h1>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="supporter-logo">
 {#              <img src="{% static 'img/supporters/6.png' %}" class="img-fluid" alt="">#}
-                <h1><a href="{% url 'umpiresall' %}">Umpires</a></h1>
+                <h1><b><a href="{% url 'umpiresall' %}">Umpires</a></b></h1>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="supporter-logo">
 {#              <img src="{% static 'img/supporters/7.png' %}" class="img-fluid" alt="">#}
-                <h1><a href="{% url 'coachall' %}">Coaches</a></h1>
+                <h1><b><a href="{% url 'coachall' %}">Coaches</a></b></h1>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="supporter-logo">
 {#              <img src="{% static 'img/supporters/8.png' %}" class="img-fluid" alt="">#}
-                <h1><a href="{% url 'matchall' %}">Matches</a></h1>
+                <h1><b><a href="{% url 'matchall' %}">Matches</a></b></h1>
             </div>
           </div>
 
@@ -930,7 +930,7 @@
             <div class="contact-phone">
               <i class="ion-ios-telephone-outline"></i>
               <h3>Phone Number</h3>
-              <p><a href="tel:+155895548855">123456789</a></p>
+              <p><a href="tel:01626187505">01626187505, 01795909318</a></p>
             </div>
           </div>
 
@@ -938,45 +938,26 @@
             <div class="contact-email">
               <i class="ion-ios-email-outline"></i>
               <h3>Email</h3>
-              <p><a href="mailto:info@example.com">info@example.com</a></p>
+              <p><a href="mailto:bafufe18@gmail.com">bafufe18@gmail.com</a></p>
             </div>
           </div>
 
         </div>
 
-        <div class="form">
-          <div id="sendmessage">Your message has been sent. Thank you!</div>
-          <div id="errormessage"></div>
-          <form action="" method="post" role="form" class="contactForm">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group col-md-6">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                <div class="validation"></div>
-              </div>
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-              <div class="validation"></div>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-              <div class="validation"></div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
-          </form>
-        </div>
 
       </div>
     </section><!-- #contact -->
 
   </main>
 
+              <script>
+          function getmyTeam2(ID) {
+            var txt = document.getElementById(ID).innerText;
+            window.location.href = "{% url 'teamsingle' %}" +"?name="+txt;
+          }
+    </script>
           <script>
-          function getText(ID) {
+          function getmySeries(ID) {
             var txt = document.getElementById(ID).innerText;
             window.location.href = "{% url 'series_details' %}" +"?name="+txt;
           }

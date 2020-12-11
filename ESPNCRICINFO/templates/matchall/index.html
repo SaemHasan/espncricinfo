@@ -5,20 +5,21 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'matchall/style.css' %}">
 </head>
 <body>
-<h1><span class="blue">MATCH DETAILS</span><span class="blue"></span> <span class="yellow"></span></h1>
+<br><br><br><br><br>
+<h1><span class="blue" style="color:deepskyblue"><b>MATCH DETAILS</b></span><span class="blue"></span> <span class="yellow"></span></h1>
 {#<h2>Created with love by <a href="http://pablogarciafernandez.com" target="_blank">Pablo García Fernández</a></h2>#}
 
 <table class="containertable">
 	<thead>
 		<tr>
-            <th><h1>First Team</h1></th>
-            <th><h1>Second Team</h1></th>
-            <th><h1>Match Type</h1></th>
-            <th><h1>Series Name</h1></th>
-            <th><h1>Weather</h1></th>
-            <th><h1>Ground</h1></th>
-			<th><h1>Man of the Match</h1></th>
-			<th><h1>Winner</h1></th>
+            <th><h1 style="color:cornflowerblue">First Team</h1></th>
+            <th><h1 style="color:cornflowerblue">Second Team</h1></th>
+            <th><h1 style="color:cornflowerblue">Match Type</h1></th>
+            <th><h1 style="color:cornflowerblue">Series Name</h1></th>
+            <th><h1 style="color:cornflowerblue">Weather</h1></th>
+            <th><h1 style="color:cornflowerblue">Ground</h1></th>
+			<th><h1 style="color:cornflowerblue">Man of the Match</h1></th>
+			<th><h1 style="color:cornflowerblue">Winner</h1></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -32,7 +33,7 @@
             <td>{{ r.ground }}</td>
             <td><a id="{{ r.motm }}" onclick="getplayer(id)">{{ r.motm }}</a></td>
             <td>{{ r.winner }}</td>
-            <td><button class="btn-danger" onclick="myFunction('{{ r.match_id }}')">Scorecard</button></td>
+            <td><button class="btn-danger" onclick="viewSingleMatch('{{ r.match_id }}')">Scorecard</button></td>
 
 
 
@@ -42,7 +43,7 @@
 	</tbody>
 </table>
     <script>
-            function myFunction(match_id) {
+            function viewSingleMatch(match_id) {
               window.location.href = "{% url 'matchsingle' %}" +"?id="+match_id;
             }
           function getplayer(ID) {

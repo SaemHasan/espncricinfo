@@ -48,7 +48,7 @@ form.example::after {
     <section id="schedule" class="section-with-bg">
       <div class="container wow fadeInUp">
         <div class="section-header">
-          <h2>Teams list</h2>
+          <h2>Teams Ranking</h2>
             <h3 class="sub-heading">Here we can see team's name with some details </h3>
 {#          <p>Here is our event schedule</p>#}
         </div>
@@ -87,7 +87,8 @@ form.example::after {
                   <img src="{% static image_path %}" alt="team logo">
                     {% endwith %}
                 </div>
-                <h4> <a id="{{ r.name }}" onclick="getText(id)">{{ r.name }}</a><span>     {{ r.id }}</span></h4>
+
+                <h4> {{ r.rank }}.  <a id="{{ r.name }}" onclick="getmyTeam(id)">{{ r.name }}</a><span>     {{ r.id }}</span></h4>
 {#                <p>Facere provident incidunt quos voluptas.</p>#}
               </div>
             </div>
@@ -250,7 +251,7 @@ form.example::after {
 
     </section>
     <script>
-          function getText(ID) {
+          function getmyTeam(ID) {
             var txt = document.getElementById(ID).innerText;
             window.location.href = "{% url 'teamsingle' %}" +"?name="+txt;
           }

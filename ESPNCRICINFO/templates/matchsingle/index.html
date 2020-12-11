@@ -43,12 +43,13 @@
 
       <section class="ftco-section about-section">
         <div class="container">
-            <h1>SCORECARD</h1>
-        <h2>First Innings</h2>
-            <th><h2>Batting: </h2></th>
-            {% for t in teams %}<h3>{{ t.team1 }}</h3>{% endfor %}
+            <h1>Match Date: {{ others.m_date }}</h1>
+            <center><h1 style="color:deepskyblue">SCORECARD</h1></center>
+        <h1 style="color:lawngreen">First Innings</h1>
+            <th><h2>Batting: {% for t in teams %} {{ t.team1 }} {% endfor %}</h2></th>
 
-            <table class="containertable">
+
+            <table class="containertable" border="2">
         <thead>
             <tr>
                 <th><h1>Batsman</h1></th>
@@ -56,48 +57,62 @@
                 <th><h1>Balls Batted</h1></th>
                 <th><h1>Fours</h1></th>
                 <th><h1>Sixes</h1></th>
+                <th><h1>Strike Rate</h1></th>
             </tr>
         </thead>
         <tbody>
             {% for r in team1_bat %}
             <tr>
 
-                <td>{{ r.player_name }}</td>
+
                 {% if r.balls_batted != None %}
+                    <td><a id="{{ r.player_name }}" onclick="getplayer(id)"> {{ r.player_name }}</a></td>
                     <td>{{ r.scored_run }}</td>
                     <td>{{ r.balls_batted }}</td>
                     <td>{{ r.fours }}</td>
                     <td>{{ r.sixes }}</td>
-                {% else %}
-                    <td>Not Batted</td>
+                    <td>{{ r.strike_rate }}</td>
                 {% endif %}
+            </tr>
+        {% endfor %}
+            {% for r in team1_bat %}
+            <tr>
 
 
+                {% if r.balls_batted == None %}
+                    <td><a id="{{ r.player_name }}" onclick="getplayer(id)"> {{ r.player_name }}</a></td>
+                    <td>NOT BATTED</td>
+                {% endif %}
             </tr>
         {% endfor %}
 
         </tbody>
-</table>
-        <th><h2>Bowling: </h2></th>
-            {% for t in teams %}<h3>{{ t.team2 }}</h3>{% endfor %}
 
-            <table class="containertable">
+</table>
+        <h4>Total: {{ others.team1_total }}</h4>
+        <br><br>
+        <th><h2>Bowling: {% for t in teams %} {{ t.team2 }} {% endfor %}</h2></th>
+
+
+            <table class="containertable" border="2">
         <thead>
             <tr>
                 <th><h1>Bowler</h1></th>
                 <th><h1>Overs</h1></th>
                 <th><h1>Given Run</h1></th>
                 <th><h1>Wickets</h1></th>
+                <th><h1>Economy</h1></th>
             </tr>
         </thead>
         <tbody>
             {% for r in team2_bowl %}
             <tr>
-                <td>{{ r.player_name }}</td>
+                <td><a id="{{ r.player_name }}" onclick="getplayer(id)"> {{ r.player_name }}</a></td>
                 {% if r.balls_bowled != None %}
                     <td>{{ r.balls_bowled }}</td>
                     <td>{{ r.given_runs }}</td>
                     <td>{{ r.wickets }}</td>
+                    <td>{{ r.economy }}</td>
                 {% endif %}
 
             </tr>
@@ -105,11 +120,12 @@
 
         </tbody>
 </table>
-        <h1>Second Innings</h1>
-            <th><h2>Batting: </h2></th>
-            {% for t in teams %}<h3>{{ t.team2 }}</h3>{% endfor %}
+        <br><br><br>
+        <h1 style="color:lawngreen">Second Innings</h1>
+            <th><h2>Batting: {% for t in teams %} {{ t.team2 }} {% endfor %}</h2></th>
 
-            <table class="containertable">
+
+            <table class="containertable" border="2">
         <thead>
             <tr>
                 <th><h1>Batsman</h1></th>
@@ -117,19 +133,27 @@
                 <th><h1>Balls Batted</h1></th>
                 <th><h1>Fours</h1></th>
                 <th><h1>Sixes</h1></th>
+                <th><h1>Strike Rate</h1></th>
             </tr>
         </thead>
         <tbody>
             {% for r in team2_bat %}
             <tr>
-
-                <td>{{ r.player_name }}</td>
                 {% if r.balls_batted != None %}
+                    <td><a id="{{ r.player_name }}" onclick="getplayer(id)"> {{ r.player_name }}</a></td>
                     <td>{{ r.scored_run }}</td>
                     <td>{{ r.balls_batted }}</td>
                     <td>{{ r.fours }}</td>
                     <td>{{ r.sixes }}</td>
-                {% else %}
+                    <td>{{ r.strike_rate }}</td>
+                {% endif %}
+
+            </tr>
+        {% endfor %}
+                    {% for r in team2_bat %}
+            <tr>
+                {% if r.balls_batted == None %}
+                    <td><a id="{{ r.player_name }}" onclick="getplayer(id)"> {{ r.player_name }}</a></td>
                     <td>Not Batted</td>
                 {% endif %}
 
@@ -138,26 +162,31 @@
 
         </tbody>
 </table>
-            <th><h2>Bowling: </h2></th>
-            {% for t in teams %}<h3>{{ t.team1 }}</h3>{% endfor %}
 
-            <table class="containertable">
+        <h4>Total: {{ others.team2_total }}</h4>
+        <br><br>
+            <th><h2>Bowling: {% for t in teams %} {{ t.team1 }} {% endfor %}</h2></th>
+
+
+            <table class="containertable" border="2">
         <thead>
             <tr>
                 <th><h1>Bowler</h1></th>
                 <th><h1>Overs</h1></th>
                 <th><h1>Given Run</h1></th>
                 <th><h1>Wickets</h1></th>
+                <th><h1>Economy</h1></th>
             </tr>
         </thead>
         <tbody>
             {% for r in team1_bowl %}
             <tr>
-                <td>{{ r.player_name }}</td>
+                <td><a id="{{ r.player_name }}" onclick="getplayer(id)"> {{ r.player_name }}</a></td>
                 {% if r.balls_bowled != None %}
                     <td>{{ r.balls_bowled }}</td>
                     <td>{{ r.given_runs }}</td>
                     <td>{{ r.wickets }}</td>
+                    <td>{{ r.economy }}</td>
                 {% endif %}
 
             </tr>
@@ -165,7 +194,10 @@
 
         </tbody>
 </table>
-        <h1>Umpires: </h1>
+        <br>
+            <h2 style="color:deepskyblue">Winner: <span style="color:white">{{ others.match_winner }}</span></h2>
+        <br><br>
+        <h1 style="color:deepskyblue">Umpires: </h1>
         {% for t in umpire %}<h2>{{ t.umpire_name }}</h2>{% endfor %}
 
 
@@ -208,6 +240,12 @@
           document.getElementById('nav-videos').hidden=true;
           document.getElementById('nav-images').hidden=true;
           document.getElementById('nav-stats').hidden=true;
+    </script>
+  <script>
+          function getplayer(ID) {
+            var txt = document.getElementById(ID).innerText;
+            window.location.href = "{% url 'playersingle' %}" +"?name="+txt;
+          }
     </script>
     
   </body>

@@ -43,7 +43,22 @@
 
       <section class="ftco-section about-section">
         <div class="container">
-        <h1 style="color: #00ad5f">MATCHES PLAYED IN THIS GROUND</h1>
+        <h1 style="color: #00ad5f">GROUND NAME : {{ name }}</h1>
+        <h3>CITY : {{ ground.city }}</h3>
+        <h3>STREET NO. : {{ ground.streetno }}</h3>
+        <h3>ZIP CODE : {{ ground.zipcode }}</h3>
+{#        {% with 'grounds/images/'|add:ground.image_link as image_path %}#}
+{#	            <a href="#" class="image d-flex justify-content-center align-items-center" style="background-image: url({% static image_path %});">#}
+{#                  <img ng-src="{% static image_path %}">#}
+{#	              <div class="icon d-flex text-center justify-content-center align-items-center">#}
+{#	                <span class="icon-search"></span>#}
+{#	              </div>#}
+{#	            </a>#}
+{#            <img src="{% url static image_path %}">#}
+{#        {% endwith %}#}
+        <br> <br> <br>
+        <h2 style="color: #00ad5f">MATCHES PLAYED IN {{ name }}</h2>
+        {% if isMatch is True %}
 
             <table class="containertable" border="1">
         <thead>
@@ -71,18 +86,33 @@
         </tbody>
 
 </table>
+                {% else %}
+            <h2>No matches played in this ground.</h2>
+        {% endif %}
 
     <br><br>
-        <h1 style="color: #00ad5f">Highest Wicket taker in this ground</h1>
+        <h1 style="color: #00ad5f">Highest Wicket taker in {{ name }}</h1>
+        {% if isMatch is True %}
             <h2>FULL NAME: <a id="{{ highestwicket.fullname }}" onclick="getplayer(id)">{{ highestwicket.fullname }}</a></h2>
         <h2>Number of Wickets : {{ highestwicket.wickets }}</h2>
+        <h2><button class="btn-success" onclick="myFunction('{{ highestwicket.mid }}')">Match Scorecard</button></h2>
+        {% else %}
+            <h2>No matches played in this ground.</h2>
+        {% endif %}
+
 
     <br><br>
-        <h1 style="color: #00ad5f">Highest Scored Runs Match in this ground</h1>
-        <h2>First Team: {{ highestRunMatch.team1 }}</h2>
-        <h2>Second Team: {{ highestRunMatch.team2 }}</h2>
-        <h2>SCORED RUNS: {{ highestRunMatch.runs }}</h2>
-        <h3>DATE OF THE MATCH: {{ highestRunMatch.date }}</h3>
+        <h1 style="color: #00ad5f">Highest Scored Runs Match in {{ name }}</h1>
+        {% if isMatch is True %}
+            <h2>First Team: {{ highestRunMatch.team1 }}</h2>
+            <h2>Second Team: {{ highestRunMatch.team2 }}</h2>
+            <h2>SCORED RUNS: {{ highestRunMatch.runs }}</h2>
+            <h3>DATE OF THE MATCH: {{ highestRunMatch.date }}</h3>
+            <h2><button class="btn-success" onclick="myFunction('{{ highestRunMatch.mid }}')">Match Scorecard</button></h2>
+        {% else %}
+            <h2>No matches played in this ground.</h2>
+        {% endif %}
+
 
     <br><br>
 
